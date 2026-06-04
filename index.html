@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Half Life Calculator</title>
+  <style>
+    body{
+      text-align: center;
+      place-items: center;
+      display: grid;
+      background: linear-gradient(to right bottom,cyan 50%, magenta 50%);
+      font-size:20px ;
+      font-family: Courier ;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    #intro{
+      color: blue;
+      font-size: 120%;
+     
+    }
+    b{
+      color: navy;
+    }
+    h1{
+      text-decoration: underline solid gold;
+      color: gold;
+    }
+    img {
+      font-size: 130%;
+      border-radius: 50%;
+      max-height: 15vw;
+      max-width: 15vw;
+      border: 3px solid gold;
+      
+    }
+    .fields{
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      align-content: center;
+      border: 3px solid blue;
+      border-radius: 4px;
+      grid-gap: 5px;
+      min-width: 65vw;
+      color: blue;
+      font-size: 120%;
+      padding: 10px;
+    }
+    input{
+      max-width: 80%;
+      width: 60%;
+      place-self: center;
+    }
+    h2{
+      color: yellow;
+      text-decoration: underline solid yellow;
+    }
+    button{
+      font-size: 120%;
+      border-radius: 3px;
+      background: linear-gradient(150deg, magenta, cyan);
+      max-width: 50%;
+      place-self: center;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://www.dropbox.com/scl/fi/xhw5fwbcm1w32gjt6zw11/file_0000000065c461f6ab65e316cb55869c.png?rlkey=q1ozvwtodrarennslraffulqz&st=h3l38dwk&dl=1"  id="logo" alt="K2">
+  <h1>☢HALF LIFE CALCULATOR☢</h1>
+  <div id="intro">
+    <p>
+      Half life of a nuclide is the time it takes for half of the undecayed atoms in the sample of the nuclide to decay.<br>
+      K2's Half Life Calculator is designed to handle the calculations involved in the concept of half life.<br>
+      <b>✨YOU ARE WELCOME✨</b>
+    </p>
+  </div>
+  <div class="fields">
+    <h2>RATE OF DECAY(k)</h2>
+    <label for="no">Initial Activity(No)</label>
+    <input type="number" id="no">
+    <label for="nt"> Final Activity (Nt)</label>
+    <input type="number" id="nt">
+    <label for="t">Time Taken(t)</label>
+    <input type="number" id="t">
+    <button id="kb" onclick="calck()">CALCULATE</button>
+    <p id="kr"></p>
+  </div>
+  
+  <br>
+  
+  <div class="fields">
+    <h2>TIME TAKEN(t)</h2>
+    <label for="tno">Initial Activity(No)</label>
+    <input type="number" id="tno">
+    <label for="tnt"> Final Activity (Nt)</label>
+    <input type="number" id="tnt">
+    <label for="tk">Rate Of Decay(k)</label>
+    <input type="number" id="tk">
+    <button id="tb" onclick="calct()">CALCULATE</button>
+    <p id="tr"></p>
+  </div>
+  
+  <br>
+  
+  <div class="fields">
+    <h2>Final Activity(Nt)</h2>
+    <label for="ano">Initial Activity(No)</label>
+    <input type="number" id="ano">
+    <label for="at"> Time Taken (t)</label>
+    <input type="number" id="at">
+    <label for="ak">Rate Of Decay(k)</label>
+    <input type="number" id="ak">
+    <button id="tb" onclick="calca()">CALCULATE</button>
+    <p id="ar"></p>
+  </div>
+  
+  <br>
+  
+  <div class="fields">
+    <h2>HALF LIFE(t1/2)</h2>
+    <label for="hlk">Rate Of Decay(k)</label>
+    <input type="number" id="hlk">
+    <button id="hlb" onclick="calchl()">CALCULATE</button>
+    <p id="hlr"></p>
+  </div><br>
+  <p>Made by [K2]</p>
+  
+  
+  <script>
+    function calck(){
+      const no = parseFloat(document.getElementById("no").value);
+      const nt = parseFloat(document.getElementById("nt").value);
+      const t = parseFloat(document.getElementById("t").value);
+      
+      const fraction = no/nt;
+      const ansk = (Math.log(fraction))/t;
+      document.getElementById("kr").textContent = `Rate Of Decay(k)=${ansk.toFixed(10)}`;
+    }
+    
+    function calct(){
+      const tno = parseFloat(document.getElementById("tno").value);
+      const tnt = parseFloat(document.getElementById("tnt").value);
+      const tk = parseFloat(document.getElementById("tk").value);
+      
+      const tfraction = tno/tnt;
+      const anst = (Math.log(tfraction))/tk;
+      document.getElementById("tr").textContent = `Time Taken(t)=${anst.toFixed(2)}`;
+    }
+    
+    function calchl(){
+      const hlk = parseFloat(document.getElementById("hlk").value);
+      
+      let anshl = 0.693/hlk;
+      document.getElementById("hlr").textContent = `Half Life(t1/2) = ${anshl.toFixed(0)}`;
+    }
+    
+    function calca(){
+      const ano = parseFloat(document.getElementById("ano").value);
+      const at = parseFloat(document.getElementById("at").value);
+      const ak = parseFloat(document.getElementById("ak").value);
+      
+      const exp = -ak*at;
+      const ansa = ano*Math.E**exp;
+      document.getElementById("ar").textContent = `Final Activity(Nt)=${ansa.toFixed(2)}`;
+    }
+    
+  </script>
+</body>
+</html>
